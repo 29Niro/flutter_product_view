@@ -47,9 +47,14 @@ class _HomePageState extends State<HomePage> {
                     width: MediaQuery.of(context).size.width / 2,
                     height: 200,
                     decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(_productModel![index].thumbnail),
-                          fit: BoxFit.cover),
+                      image: _productModel![index].thumbnail != ''
+                          ? DecorationImage(
+                              image:
+                                  NetworkImage(_productModel![index].thumbnail),
+                              fit: BoxFit.cover)
+                          : const DecorationImage(
+                              image: AssetImage('images/dummy.jpg'),
+                              fit: BoxFit.cover),
                     ),
                   ),
                   const SizedBox(

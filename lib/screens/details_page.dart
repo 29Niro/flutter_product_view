@@ -38,10 +38,14 @@ class _DetailsPageState extends State<DetailsPage> {
                     width: MediaQuery.of(context).size.width,
                     height: 300,
                     decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: NetworkImage(item),
-                          fit: BoxFit.cover,
-                          alignment: Alignment.center),
+                      image: item != ''
+                          ? DecorationImage(
+                              image: NetworkImage(item),
+                              fit: BoxFit.cover,
+                              alignment: Alignment.center)
+                          : const DecorationImage(
+                              image: AssetImage('images/dummy.jpg'),
+                              fit: BoxFit.cover),
                     ),
                   ),
                 )
