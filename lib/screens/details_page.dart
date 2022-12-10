@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -20,6 +21,8 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
+  int _current = 0;
+  final CarouselController _controller = CarouselController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,8 +31,33 @@ class _DetailsPageState extends State<DetailsPage> {
       ),
       body: Column(
         children: [
-          Image(
-            image: NetworkImage(widget.imageList[0]),
+          CarouselSlider(
+            items: widget.imageList
+                .map(
+                  (item) => Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 300,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(item),
+                          fit: BoxFit.cover,
+                          alignment: Alignment.center),
+                    ),
+                  ),
+                )
+                .toList(),
+            carouselController: _controller,
+            options: CarouselOptions(
+              viewportFraction: 1,
+              height: 300,
+              autoPlay: true,
+              aspectRatio: 2.0,
+              onPageChanged: ((index, reason) {
+                setState(() {
+                  _current = index;
+                });
+              }),
+            ),
           ),
           const SizedBox(
             height: 20,
@@ -41,7 +69,8 @@ class _DetailsPageState extends State<DetailsPage> {
               children: [
                 Text(
                   (widget.title),
-                  style: const TextStyle(fontSize: 25.0),
+                  style: const TextStyle(
+                      fontSize: 25.0, fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(
                   height: 10.0,
