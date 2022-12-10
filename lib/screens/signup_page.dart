@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_product_view/screens/home_page.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -8,6 +10,11 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
+  final TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _checkPasswordTextController =
+      TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +48,7 @@ class _SignupPageState extends State<SignupPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextField(
+                    controller: _emailTextController,
                     cursorColor: Colors.white,
                     keyboardType: TextInputType.emailAddress,
                     decoration: const InputDecoration(
@@ -73,6 +81,7 @@ class _SignupPageState extends State<SignupPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextField(
+                    controller: _passwordTextController,
                     cursorColor: Colors.white,
                     obscureText: true,
                     decoration: const InputDecoration(
@@ -105,6 +114,7 @@ class _SignupPageState extends State<SignupPage> {
                 child: Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: TextField(
+                    controller: _checkPasswordTextController,
                     cursorColor: Colors.white,
                     obscureText: true,
                     decoration: const InputDecoration(
@@ -135,7 +145,29 @@ class _SignupPageState extends State<SignupPage> {
                   padding: const EdgeInsets.only(
                       left: 150, top: 15, right: 150, bottom: 15),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  if (_passwordTextController.text ==
+                      _checkPasswordTextController.text) {
+                    FirebaseAuth.instance
+                        .createUserWithEmailAndPassword(
+                            email: _emailTextController.text,
+                            password: _passwordTextController.text)
+                        .then((value) {
+                      // ignore: avoid_print
+                      print("Created New Account");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const HomePage())));
+                    }).onError((error, stackTrace) {
+                      // ignore: avoid_print
+                      print("Error ${error.toString()}");
+                    });
+                  } else {
+                    // ignore: avoid_print
+                    print("Passwords dosn't match");
+                  }
+                },
                 child: const Text(
                   'SIGNUP',
                   style: TextStyle(
