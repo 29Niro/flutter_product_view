@@ -55,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                   height: MediaQuery.of(context).size.height / 4,
                   margin: const EdgeInsets.only(top: 5, left: 5, right: 5),
                   child: Card(
-                    elevation: 4,
+                    elevation: 6,
                     clipBehavior: Clip.antiAlias,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(4.0)),

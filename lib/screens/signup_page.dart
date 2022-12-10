@@ -21,7 +21,16 @@ class _SignupPageState extends State<SignupPage> {
       body: SingleChildScrollView(
           child: Container(
         height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(color: Colors.black),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.fromARGB(255, 51, 8, 103),
+              Color.fromARGB(255, 48, 207, 208),
+            ],
+          ),
+        ),
         child: Column(
           children: [
             const Padding(

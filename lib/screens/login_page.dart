@@ -20,7 +20,16 @@ class _LoginPageState extends State<LoginPage> {
       body: SingleChildScrollView(
           child: Container(
         height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(color: Colors.black),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Color.fromARGB(255, 51, 8, 103),
+              Color.fromARGB(255, 48, 207, 208),
+            ],
+          ),
+        ),
         child: Column(
           children: [
             const Padding(
@@ -29,7 +38,6 @@ class _LoginPageState extends State<LoginPage> {
                 'Log In',
                 style: TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
-                    fontFamily: 'Robika',
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold),
               ),
@@ -92,10 +100,8 @@ class _LoginPageState extends State<LoginPage> {
                           color: Colors.white,
                         ),
                         hintText: 'Enter your Password',
-                        hintStyle: TextStyle(
-                            color: Colors.white,
-                            fontFamily: 'Robika',
-                            fontSize: 16)),
+                        hintStyle:
+                            TextStyle(color: Colors.white, fontSize: 16)),
                     style: TextStyle(
                         color: Colors.white.withOpacity(0.9),
                         fontWeight: FontWeight.w500,
