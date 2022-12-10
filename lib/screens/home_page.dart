@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_product_view/screens/details_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -68,7 +69,12 @@ class _HomePageState extends State<HomePage> {
                     child: TextButton(
                       style:
                           TextButton.styleFrom(backgroundColor: Colors.green),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const DetailsPage()));
+                      },
                       child: const Text(
                         "View >>>",
                         style: TextStyle(color: Colors.white),
