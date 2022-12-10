@@ -11,17 +11,18 @@ class ApiServices {
       );
 
       final result = json.decode(response.body);
-
+      // print(result);
       if (response.statusCode == 200) {
         List<ProductModel> list = [];
 
         var items = (result["products"]);
-
+        // print(items);
         if (items != null) {
           for (var item in items) {
             list.add(ProductModel.fromParsedJson(item));
           }
         }
+        print(list);
         return list;
       } else {
         return [];

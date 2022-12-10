@@ -14,7 +14,7 @@ class ProductModel {
         thumbnail = result['thumbnail'],
         price = result['price'],
         brand = result['brand'],
-        rating = result['rating'],
+        rating = result['rating']?.toDouble(),
         description = result['description'],
         images = result['images'];
 }

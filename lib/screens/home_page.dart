@@ -45,61 +45,69 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width / 2,
-                    height: 150,
+                    height: 200,
                     decoration: BoxDecoration(
-                        image: DecorationImage(
-                      image: NetworkImage(_productModel![index].thumbnail),
-                    )),
+                      image: DecorationImage(
+                          image: NetworkImage(_productModel![index].thumbnail),
+                          fit: BoxFit.cover),
+                    ),
                   ),
                   const SizedBox(
                     width: 15,
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Title',
-                        style: TextStyle(
-                            overflow: TextOverflow.ellipsis,
-                            fontSize: 14.0,
-                            fontWeight: FontWeight.w700),
-                      ),
-                      const SizedBox(
-                        height: 5.0,
-                      ),
-                      const Text(
-                        'Brand',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      const SizedBox(
-                        height: 5.0,
-                      ),
-                      const Text(
-                        'Price\$',
-                        style: TextStyle(
-                            fontSize: 20.0, fontWeight: FontWeight.w500),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                              backgroundColor: Colors.green),
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const DetailsPage()));
-                          },
-                          child: const Text(
-                            "View >>>",
-                            style: TextStyle(color: Colors.white),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: 10.0, top: 10.0, bottom: 10.0),
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            _productModel![index].title,
+                            style: const TextStyle(
+                                fontSize: 16.0, fontWeight: FontWeight.w700),
                           ),
                         ),
-                      ),
-                    ],
+                        Expanded(
+                          child: Text(
+                            _productModel![index].brand,
+                            style: const TextStyle(color: Colors.grey),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(
+                          '${_productModel![index].price}\$',
+                          style: const TextStyle(
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.red),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                                backgroundColor: Colors.green),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const DetailsPage()));
+                            },
+                            child: const Text(
+                              "View >>>",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
