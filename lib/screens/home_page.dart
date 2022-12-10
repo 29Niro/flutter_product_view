@@ -97,8 +97,16 @@ class _HomePageState extends State<HomePage> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const DetailsPage()));
+                                      builder: (context) => DetailsPage(
+                                            imageList:
+                                                _productModel![index].images,
+                                            title: _productModel![index].title,
+                                            description: _productModel![index]
+                                                .description,
+                                            price: _productModel![index].price,
+                                            rating:
+                                                _productModel![index].rating,
+                                          )));
                             },
                             child: const Text(
                               "View >>>",
