@@ -183,7 +183,9 @@ class _SignupPageState extends State<SignupPage> {
                   style: TextStyle(color: Colors.white),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
                   child: const Text(
                     "Log In",
                     style: TextStyle(
